@@ -14,7 +14,6 @@ const alphabet = [
   "E",
   "F",
   "G",
-  "Ğ",
   "H",
   "I",
   "İ",
