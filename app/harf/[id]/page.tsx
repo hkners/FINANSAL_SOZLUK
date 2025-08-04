@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, BookOpen } from "lucide-react"
 import Link from "next/link"
 import { AlphabetFilter } from "@/components/alphabet-filter"
+import { getTermsByLetter } from "@/lib/mock-data"
 
 // Türk alfabesi
 const alphabet = [
@@ -35,115 +36,6 @@ const alphabet = [
   "Y",
   "Z",
 ]
-
-// Harflere göre terimler
-const getTermsByLetter = (letter: string) => {
-  const sampleTerms: Record<
-    string,
-    Array<{
-      term: string
-      slug: string
-      definition: string
-      category: string
-      pronunciation?: string
-    }>
-  > = {
-    a: [
-      {
-        term: "Aktif",
-        slug: "aktif",
-        definition:
-          "Bir şirketin sahip olduğu tüm varlıkların toplamı. Nakit, alacaklar, stoklar, binalar ve ekipmanlar aktif olarak kabul edilir.",
-        category: "Muhasebe",
-        pronunciation: "ak-tif",
-      },
-      {
-        term: "Anapara",
-        slug: "anapara",
-        definition: "Borç verilen veya yatırılan asıl para miktarı. Faiz hesaplamasının temelini oluşturan ana tutar.",
-        category: "Bankacılık",
-        pronunciation: "a-na-pa-ra",
-      },
-      {
-        term: "Angel Yatırımcı",
-        slug: "angel-yatirimci",
-        definition: "Erken aşama şirketlere kişisel sermayelerini yatıran deneyimli girişimci veya iş insanı.",
-        category: "Girişimcilik",
-        pronunciation: "an-gel ya-tı-rım-cı",
-      },
-      {
-        term: "Altcoin",
-        slug: "altcoin",
-        definition:
-          "Bitcoin dışındaki tüm kripto para birimlerinin genel adı. Ethereum, Litecoin gibi alternatif coinler.",
-        category: "Kripto",
-        pronunciation: "alt-koyn",
-      },
-    ],
-    b: [
-      {
-        term: "Bitcoin",
-        slug: "bitcoin",
-        definition: "İlk ve en bilinen merkezi olmayan dijital para birimi. Blockchain teknolojisi üzerine kurulu.",
-        category: "Kripto",
-        pronunciation: "bit-koyn",
-      },
-      {
-        term: "BIST",
-        slug: "bist",
-        definition:
-          "Borsa İstanbul'un kısaltması. Türkiye'nin ana borsası ve hisse senetlerinin işlem gördüğü platform.",
-        category: "Borsa",
-        pronunciation: "bist",
-      },
-      {
-        term: "Blockchain",
-        slug: "blockchain",
-        definition: "Dağıtık defter teknolojisi. Kripto paraların temelini oluşturan, değiştirilemez kayıt sistemi.",
-        category: "Kripto",
-        pronunciation: "blok-çeyn",
-      },
-    ],
-    c: [
-      {
-        term: "Cashback",
-        slug: "cashback",
-        definition: "Harcama karşılığında geri ödenen para miktarı. Kredi kartı ve dijital ödeme sistemlerinde yaygın.",
-        category: "Kredi Kartları",
-        pronunciation: "keş-bek",
-      },
-    ],
-    ç: [
-      {
-        term: "Çek",
-        slug: "cek",
-        definition: "Bankaya yazılı ödeme emri veren kıymetli evrak. Belirli bir tutarın ödenmesini sağlar.",
-        category: "Bankacılık",
-        pronunciation: "çek",
-      },
-    ],
-    d: [
-      {
-        term: "Diversifikasyon",
-        slug: "diversifikasyon",
-        definition:
-          "Yatırım riskini azaltmak için farklı varlık sınıflarına, sektörlere ve coğrafyalara yatırım yapma stratejisi.",
-        category: "Yatırım",
-        pronunciation: "di-ver-si-fi-kas-yon",
-      },
-      {
-        term: "DeFi",
-        slug: "defi",
-        definition:
-          "Decentralized Finance. Merkezi olmayan finans protokolleri ve blockchain tabanlı finansal hizmetler.",
-        category: "Kripto",
-        pronunciation: "di-fay",
-      },
-    ],
-  }
-
-  return sampleTerms[letter.toLowerCase()] || []
-}
 
 interface PageProps {
   params: {

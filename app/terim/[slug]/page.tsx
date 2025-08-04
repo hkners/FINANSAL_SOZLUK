@@ -3,28 +3,22 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Share2, Bookmark } from "lucide-react"
 import Link from "next/link"
+import { getTermBySlug } from "@/lib/mock-data"
+import { notFound } from "next/navigation"
 
-// Bu örnek veri gerçek uygulamada veritabanından gelecek
-const termData = {
-  term: "Hisse Senedi",
-  slug: "hisse-senedi",
-  definition:
-    "Hisse senedi, bir şirketin sermayesinde ortaklık hakkı veren menkul kıymettir. Hisse senedi sahibi, şirketin karından pay alma ve yönetimde söz sahibi olma hakkına sahiptir.",
-  example:
-    "Türkiye'nin en büyük bankası olan İş Bankası'nın hisse senetleri Borsa İstanbul'da ISCTR kodu ile işlem görmektedir.",
-  category: "Borsa",
-  relatedTerms: [
-    { term: "Temettü", slug: "temettü" },
-    { term: "Borsa", slug: "borsa" },
-    { term: "Portföy", slug: "portfoy" },
-    { term: "Yatırım", slug: "yatirim" },
-  ],
-  seoTitle: "Hisse Senedi Nedir? | Finansal Sözlük",
-  metaDescription:
-    "Hisse senedi tanımı, özellikleri ve örnekleri. Borsa yatırımı yapmak isteyenler için kapsamlı rehber.",
+interface PageProps {
+  params: {
+    slug: string
+  }
 }
 
-export default function TermDetailPage() {
+export default function TermDetailPage({ params }: PageProps) {
+  const termData = getTermBySlug(params.slug)
+
+  if (!termData) {
+    notFound()
+  }
+
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
@@ -99,4 +93,20 @@ export default function TermDetailPage() {
       </div>
     </div>
   )
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const termData = getTermBySlug(params.slug)
+
+  if (!termData) {
+    return {
+      title: "Terim Bulunamadı | Finansal Sözlük",
+      description: "Aradığınız finansal terim bulunamadı.",
+    }
+  }
+
+  return {
+    title: termData.seoTitle,
+    description: termData.metaDescription,
+  }
 }

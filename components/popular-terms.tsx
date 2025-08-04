@@ -1,47 +1,11 @@
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-
-const popularTerms = [
-  {
-    term: "Hisse Senedi",
-    slug: "hisse-senedi",
-    definition: "Bir şirketin sermayesinde ortaklık hakkı veren menkul kıymet.",
-    category: "Borsa",
-  },
-  {
-    term: "Bitcoin",
-    slug: "bitcoin",
-    definition: "İlk ve en bilinen merkezi olmayan dijital para birimi.",
-    category: "Kripto",
-  },
-  {
-    term: "Faiz",
-    slug: "faiz",
-    definition: "Borç verilen paranın kullanımı karşılığında alınan bedel.",
-    category: "Bankacılık",
-  },
-  {
-    term: "Portföy",
-    slug: "portfoy",
-    definition: "Bir yatırımcının sahip olduğu tüm yatırım araçlarının toplamı.",
-    category: "Yatırım",
-  },
-  {
-    term: "Startup",
-    slug: "startup",
-    definition: "Yenilikçi bir iş modeli ile hızlı büyüme hedefleyen genç şirket.",
-    category: "Girişimcilik",
-  },
-  {
-    term: "Kredi Notu",
-    slug: "kredi-notu",
-    definition: "Bir kişinin kredi geri ödeme geçmişini gösteren sayısal değer.",
-    category: "Bankacılık",
-  },
-]
+import { getPopularTerms } from "@/lib/mock-data"
 
 export function PopularTerms() {
+  const popularTerms = getPopularTerms(6)
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {popularTerms.map((term) => (
@@ -54,7 +18,7 @@ export function PopularTerms() {
                   {term.category}
                 </Badge>
               </div>
-              <p className="text-gray-600 text-sm leading-relaxed">{term.definition}</p>
+              <p className="text-gray-600 text-sm leading-relaxed">{term.definition.substring(0, 120)}...</p>
             </CardContent>
           </Card>
         </Link>

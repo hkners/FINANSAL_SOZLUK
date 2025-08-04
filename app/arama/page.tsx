@@ -9,177 +9,17 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ArrowLeft, Search, Filter, SortAsc } from "lucide-react"
 import Link from "next/link"
-
-// Genişletilmiş terimler veritabanı
-const allTerms = [
-  {
-    term: "Aktif",
-    slug: "aktif",
-    definition:
-      "Bir şirketin sahip olduğu tüm varlıkların toplamı. Nakit, alacaklar, stoklar, binalar ve ekipmanlar aktif olarak kabul edilir.",
-    category: "Muhasebe",
-    popularity: 85,
-  },
-  {
-    term: "Bitcoin",
-    slug: "bitcoin",
-    definition:
-      "İlk ve en bilinen merkezi olmayan dijital para birimi. Blockchain teknolojisi üzerine kurulu olan Bitcoin, 2009 yılında Satoshi Nakamoto tarafından yaratıldı.",
-    category: "Kripto",
-    popularity: 95,
-  },
-  {
-    term: "Hisse Senedi",
-    slug: "hisse-senedi",
-    definition:
-      "Bir şirketin sermayesinde ortaklık hakkı veren menkul kıymet. Hisse senedi sahibi, şirketin karından pay alma ve yönetimde söz sahibi olma hakkına sahiptir.",
-    category: "Borsa",
-    popularity: 90,
-  },
-  {
-    term: "Faiz",
-    slug: "faiz",
-    definition:
-      "Borç verilen paranın kullanımı karşılığında alınan bedel. Merkez bankaları ekonomiyi yönlendirmek için faiz oranlarını kullanır.",
-    category: "Bankacılık",
-    popularity: 88,
-  },
-  {
-    term: "Portföy",
-    slug: "portfoy",
-    definition:
-      "Bir yatırımcının sahip olduğu tüm yatırım araçlarının toplamı. Diversifikasyon için farklı varlık sınıflarından oluşmalıdır.",
-    category: "Yatırım",
-    popularity: 82,
-  },
-  {
-    term: "Startup",
-    slug: "startup",
-    definition:
-      "Yenilikçi bir iş modeli ile hızlı büyüme hedefleyen genç şirket. Genellikle teknoloji odaklı ve risk sermayesi ile finanse edilir.",
-    category: "Girişimcilik",
-    popularity: 78,
-  },
-  {
-    term: "BIST",
-    slug: "bist",
-    definition:
-      "Borsa İstanbul'un kısaltması, Türkiye'nin ana borsası. Hisse senetleri, tahviller ve diğer menkul kıymetlerin işlem gördüğü platform.",
-    category: "Borsa",
-    popularity: 75,
-  },
-  {
-    term: "Blockchain",
-    slug: "blockchain",
-    definition:
-      "Dağıtık defter teknolojisi, kripto paraların temelini oluşturur. Değiştirilemez kayıt sistemi ile güvenli işlemler sağlar.",
-    category: "Kripto",
-    popularity: 80,
-  },
-  {
-    term: "Temettü",
-    slug: "temettü",
-    definition:
-      "Şirketlerin hissedarlarına dağıttığı kar payı. Genellikle yılda bir veya birkaç kez nakit olarak ödenir.",
-    category: "Borsa",
-    popularity: 70,
-  },
-  {
-    term: "Angel Yatırımcı",
-    slug: "angel-yatirimci",
-    definition:
-      "Erken aşama şirketlere yatırım yapan bireysel yatırımcı. Sadece para değil, deneyim ve network de sağlar.",
-    category: "Girişimcilik",
-    popularity: 65,
-  },
-  {
-    term: "Diversifikasyon",
-    slug: "diversifikasyon",
-    definition:
-      "Yatırım riskini azaltmak için farklı varlık sınıflarına, sektörlere ve coğrafyalara yatırım yapma stratejisi.",
-    category: "Yatırım",
-    popularity: 72,
-  },
-  {
-    term: "Kredi Notu",
-    slug: "kredi-notu",
-    definition:
-      "Bir kişinin kredi geri ödeme geçmişini gösteren sayısal değer. Bankalar kredi verirken bu notu dikkate alır.",
-    category: "Bankacılık",
-    popularity: 85,
-  },
-  {
-    term: "DeFi",
-    slug: "defi",
-    definition: "Decentralized Finance - Merkezi olmayan finans protokolleri ve blockchain tabanlı finansal hizmetler.",
-    category: "Kripto",
-    popularity: 68,
-  },
-  {
-    term: "ROI",
-    slug: "roi",
-    definition:
-      "Return on Investment - Yatırım getirisi oranı. Bir yatırımın karlılığını ölçmek için kullanılan temel metrik.",
-    category: "Yatırım",
-    popularity: 77,
-  },
-  {
-    term: "MVP",
-    slug: "mvp",
-    definition:
-      "Minimum Viable Product - En az özellikli ürün. Startup'ların piyasayı test etmek için çıkardığı ilk versiyon.",
-    category: "Girişimcilik",
-    popularity: 60,
-  },
-  {
-    term: "Ethereum",
-    slug: "ethereum",
-    definition:
-      "Akıllı kontratları destekleyen ikinci nesil blockchain platformu. DeFi ve NFT ekosisteminin temelini oluşturur.",
-    category: "Kripto",
-    popularity: 85,
-  },
-  {
-    term: "NFT",
-    slug: "nft",
-    definition:
-      "Non-Fungible Token - Benzersiz dijital varlık sertifikası. Sanat, oyun ve koleksiyon alanlarında kullanılır.",
-    category: "Kripto",
-    popularity: 73,
-  },
-  {
-    term: "Borsa",
-    slug: "borsa",
-    definition:
-      "Menkul kıymetlerin alınıp satıldığı organize piyasa. Şirketler burada halka arz olur ve yatırımcılar işlem yapar.",
-    category: "Borsa",
-    popularity: 92,
-  },
-  {
-    term: "Yatırım",
-    slug: "yatirim",
-    definition:
-      "Gelecekte getiri elde etmek amacıyla yapılan harcama. Risk ve getiri arasında denge kurulması gerekir.",
-    category: "Yatırım",
-    popularity: 95,
-  },
-  {
-    term: "Kredi",
-    slug: "kredi",
-    definition: "Bankalar tarafından müşterilere verilen borç. Faiz karşılığında belirli bir sürede geri ödenir.",
-    category: "Bankacılık",
-    popularity: 90,
-  },
-]
+import { searchTerms } from "@/lib/mock-data"
+import type { FinancialTerm } from "@/lib/mock-data"
 
 type SortOption = "relevance" | "alphabetical" | "popularity"
-type FilterOption = "all" | "Bankacılık" | "Borsa" | "Kripto" | "Yatırım" | "Girişimcilik" | "Muhasebe"
+type FilterOption = "all" | "Bankacılık" | "Borsa" | "Kripto" | "Yatırım" | "Girişimcilik" | "Muhasebe" | "Ekonomi"
 
 function SearchContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("")
-  const [results, setResults] = useState<typeof allTerms>([])
+  const [results, setResults] = useState<FinancialTerm[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [sortBy, setSortBy] = useState<SortOption>("relevance")
   const [filterBy, setFilterBy] = useState<FilterOption>("all")
@@ -197,12 +37,7 @@ function SearchContent() {
     setIsLoading(true)
 
     setTimeout(() => {
-      let filtered = allTerms.filter(
-        (term) =>
-          term.term.toLowerCase().includes(query.toLowerCase()) ||
-          term.definition.toLowerCase().includes(query.toLowerCase()) ||
-          term.category.toLowerCase().includes(query.toLowerCase()),
-      )
+      let filtered = searchTerms(query)
 
       // Kategori filtresi uygula
       if (filterBy !== "all") {
@@ -233,7 +68,7 @@ function SearchContent() {
     }, 300)
   }
 
-  const getRelevanceScore = (term: (typeof allTerms)[0], query: string) => {
+  const getRelevanceScore = (term: FinancialTerm, query: string) => {
     const queryLower = query.toLowerCase()
     const termLower = term.term.toLowerCase()
     const definitionLower = term.definition.toLowerCase()
@@ -390,6 +225,8 @@ function SearchContent() {
                       { value: "Kripto", label: "Kripto" },
                       { value: "Yatırım", label: "Yatırım" },
                       { value: "Girişimcilik", label: "Girişimcilik" },
+                      { value: "Muhasebe", label: "Muhasebe" },
+                      { value: "Ekonomi", label: "Ekonomi" },
                     ].map((option) => (
                       <Button
                         key={option.value}
@@ -493,21 +330,23 @@ function SearchContent() {
           <div className="text-center py-16">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">Popüler Aramalar</h3>
             <div className="flex flex-wrap justify-center gap-2">
-              {["Bitcoin", "Hisse Senedi", "Faiz", "Startup", "Portföy", "BIST", "Blockchain", "DeFi"].map((term) => (
-                <Button
-                  key={term}
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    setSearchTerm(term)
-                    performSearch(term)
-                    router.push(`/arama?q=${encodeURIComponent(term)}`)
-                  }}
-                  className="hover:bg-blue-50"
-                >
-                  {term}
-                </Button>
-              ))}
+              {["Bitcoin", "Hisse Senedi", "Faiz", "Enflasyon", "Portföy", "Borsa", "Blockchain", "DeFi"].map(
+                (term) => (
+                  <Button
+                    key={term}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setSearchTerm(term)
+                      performSearch(term)
+                      router.push(`/arama?q=${encodeURIComponent(term)}`)
+                    }}
+                    className="hover:bg-blue-50"
+                  >
+                    {term}
+                  </Button>
+                ),
+              )}
             </div>
           </div>
         )}
