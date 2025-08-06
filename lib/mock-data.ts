@@ -4,10 +4,8 @@ export interface FinancialTerm {
   definition: string
   example: string
   category: string
-  relatedTerms: Array<{ term: string; slug: string }>
   seoTitle: string
   metaDescription: string
-  popularity: number
   pronunciation?: string
 }
 
@@ -21,16 +19,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Türkiye'nin en büyük bankası olan İş Bankası'nın hisse senetleri Borsa İstanbul'da ISCTR kodu ile işlem görmektedir.",
     category: "Borsa",
-    relatedTerms: [
-      { term: "Temettü", slug: "temettu" },
-      { term: "Borsa", slug: "borsa" },
-      { term: "Portföy", slug: "portfoy" },
-      { term: "Yatırım", slug: "yatirim" },
-    ],
     seoTitle: "Hisse Senedi Nedir? | Finansal Sözlük",
     metaDescription:
       "Hisse senedi tanımı, özellikleri ve örnekleri. Borsa yatırımı yapmak isteyenler için kapsamlı rehber.",
-    popularity: 95,
     pronunciation: "hi-se se-ne-di",
   },
   {
@@ -41,16 +32,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Bitcoin'in değeri 2021 yılında rekor seviyeye ulaşarak 60.000 doları aştı, ancak kripto para piyasaları yüksek volatilite göstermeye devam ediyor.",
     category: "Kripto",
-    relatedTerms: [
-      { term: "Blockchain", slug: "blockchain" },
-      { term: "Ethereum", slug: "ethereum" },
-      { term: "DeFi", slug: "defi" },
-      { term: "NFT", slug: "nft" },
-    ],
     seoTitle: "Bitcoin Nedir? | Finansal Sözlük",
     metaDescription:
       "Bitcoin hakkında kapsamlı bilgi. Bitcoin nasıl çalışır, nasıl alınır ve satılır? Kripto para dünyasına giriş.",
-    popularity: 98,
     pronunciation: "bit-koyn",
   },
   {
@@ -61,16 +45,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Merkez Bankası, enflasyonla mücadele için politika faizini %15'e yükseltti, bu da kredi faizlerinin artmasına neden oldu.",
     category: "Bankacılık",
-    relatedTerms: [
-      { term: "Enflasyon", slug: "enflasyon" },
-      { term: "Kredi", slug: "kredi" },
-      { term: "Mevduat", slug: "mevduat" },
-      { term: "Tahvil", slug: "tahvil" },
-    ],
     seoTitle: "Faiz Nedir? | Finansal Sözlük",
     metaDescription:
       "Faiz kavramı, türleri ve ekonomideki rolü. Basit ve bileşik faiz hesaplama yöntemleri hakkında bilgi.",
-    popularity: 90,
     pronunciation: "fa-iz",
   },
   {
@@ -80,16 +57,9 @@ const financialTerms: FinancialTerm[] = [
       "Enflasyon, genel fiyat seviyesinin sürekli ve önemli artışı olarak tanımlanır. Para biriminin satın alma gücünün azalmasına neden olur ve ekonomik istikrarı etkiler.",
     example: "Türkiye'de 2022 yılında enflasyon oranı %80'i aşarak son 24 yılın en yüksek seviyesine ulaştı.",
     category: "Ekonomi",
-    relatedTerms: [
-      { term: "Faiz", slug: "faiz" },
-      { term: "TÜFE", slug: "tufe" },
-      { term: "Devalüasyon", slug: "devaluasyon" },
-      { term: "Stagflasyon", slug: "stagflasyon" },
-    ],
     seoTitle: "Enflasyon Nedir? | Finansal Sözlük",
     metaDescription:
       "Enflasyon tanımı, nedenleri ve etkileri. Enflasyonla mücadele yöntemleri ve ekonomiye etkileri hakkında bilgi.",
-    popularity: 92,
     pronunciation: "enf-las-yon",
   },
   {
@@ -100,16 +70,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Dengeli bir yatırım portföyü, farklı varlık sınıflarına dağıtılmış yatırımlarla riski azaltır ve potansiyel getiriyi optimize eder.",
     category: "Yatırım",
-    relatedTerms: [
-      { term: "Diversifikasyon", slug: "diversifikasyon" },
-      { term: "Hisse Senedi", slug: "hisse-senedi" },
-      { term: "Tahvil", slug: "tahvil" },
-      { term: "Fon", slug: "fon" },
-    ],
     seoTitle: "Portföy Nedir? | Finansal Sözlük",
     metaDescription:
       "Yatırım portföyü oluşturma ve yönetme stratejileri. Portföy çeşitlendirmesi ve risk yönetimi hakkında bilgi.",
-    popularity: 85,
     pronunciation: "port-föy",
   },
   {
@@ -120,16 +83,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Blockchain teknolojisi sadece kripto paralarda değil, tedarik zinciri yönetimi, dijital kimlik doğrulama ve akıllı sözleşmeler gibi birçok alanda kullanılmaktadır.",
     category: "Kripto",
-    relatedTerms: [
-      { term: "Bitcoin", slug: "bitcoin" },
-      { term: "Akıllı Kontrat", slug: "akilli-kontrat" },
-      { term: "DeFi", slug: "defi" },
-      { term: "Konsensüs", slug: "konsensus" },
-    ],
     seoTitle: "Blockchain Nedir? | Finansal Sözlük",
     metaDescription:
       "Blockchain teknolojisinin temelleri, çalışma prensibi ve kullanım alanları. Dağıtık defter teknolojisi hakkında kapsamlı bilgi.",
-    popularity: 88,
     pronunciation: "blok-çeyn",
   },
   {
@@ -140,16 +96,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Borsa İstanbul (BIST), Türkiye'nin ulusal borsasıdır ve BIST 100 endeksi en büyük 100 şirketin performansını ölçer.",
     category: "Borsa",
-    relatedTerms: [
-      { term: "Hisse Senedi", slug: "hisse-senedi" },
-      { term: "Endeks", slug: "endeks" },
-      { term: "Halka Arz", slug: "halka-arz" },
-      { term: "Temettü", slug: "temettu" },
-    ],
     seoTitle: "Borsa Nedir? | Finansal Sözlük",
     metaDescription:
       "Borsa kavramı, işleyişi ve yatırım stratejileri. Borsada işlem yapma, analiz yöntemleri ve dikkat edilmesi gerekenler.",
-    popularity: 94,
     pronunciation: "bor-sa",
   },
   {
@@ -159,16 +108,9 @@ const financialTerms: FinancialTerm[] = [
       "Temettü, şirketlerin karlarından hissedarlarına dağıttıkları paydır. Genellikle nakit olarak ödenir, ancak bazen ek hisse senedi şeklinde de olabilir.",
     example: "İş Bankası, 2022 yılı karından hissedarlarına hisse başına 0,35 TL temettü dağıtma kararı aldı.",
     category: "Borsa",
-    relatedTerms: [
-      { term: "Hisse Senedi", slug: "hisse-senedi" },
-      { term: "Kar Payı Verimi", slug: "kar-payi-verimi" },
-      { term: "Borsa", slug: "borsa" },
-      { term: "Bedelsiz Hisse", slug: "bedelsiz-hisse" },
-    ],
     seoTitle: "Temettü Nedir? | Finansal Sözlük",
     metaDescription:
       "Temettü kavramı, hesaplanması ve yatırım stratejisindeki önemi. Temettü verimi ve temettü odaklı yatırım yaklaşımları.",
-    popularity: 82,
     pronunciation: "te-met-tü",
   },
   {
@@ -179,16 +121,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "DeFi platformları üzerinden kullanıcılar, aracı kurumlara ihtiyaç duymadan borç alabilir, verebilir ve çeşitli finansal işlemler gerçekleştirebilir.",
     category: "Kripto",
-    relatedTerms: [
-      { term: "Ethereum", slug: "ethereum" },
-      { term: "Akıllı Kontrat", slug: "akilli-kontrat" },
-      { term: "Yield Farming", slug: "yield-farming" },
-      { term: "Likidite Havuzu", slug: "likidite-havuzu" },
-    ],
     seoTitle: "DeFi (Merkeziyetsiz Finans) Nedir? | Finansal Sözlük",
     metaDescription:
       "DeFi ekosistemi, uygulamaları ve geleneksel finanstan farkları. Merkeziyetsiz finans platformlarının çalışma prensibi ve riskleri.",
-    popularity: 86,
     pronunciation: "di-fay",
   },
   {
@@ -199,16 +134,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Ethereum ağı üzerinde binlerce merkeziyetsiz uygulama (dApp) çalışmakta ve DeFi ekosisteminin büyük bir kısmı bu platform üzerinde geliştirilmektedir.",
     category: "Kripto",
-    relatedTerms: [
-      { term: "Bitcoin", slug: "bitcoin" },
-      { term: "Akıllı Kontrat", slug: "akilli-kontrat" },
-      { term: "DeFi", slug: "defi" },
-      { term: "Gas Ücreti", slug: "gas-ucreti" },
-    ],
     seoTitle: "Ethereum Nedir? | Finansal Sözlük",
     metaDescription:
       "Ethereum blockchain platformu, özellikleri ve kullanım alanları. Ether (ETH) kripto para birimi ve akıllı kontratlar hakkında bilgi.",
-    popularity: 90,
     pronunciation: "i-tır-yım",
   },
   {
@@ -219,16 +147,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Dijital sanatçı Beeple'ın 'Everydays: The First 5000 Days' adlı NFT eseri, Christie's müzayedesinde 69 milyon dolara satıldı.",
     category: "Kripto",
-    relatedTerms: [
-      { term: "Ethereum", slug: "ethereum" },
-      { term: "Blockchain", slug: "blockchain" },
-      { term: "Metaverse", slug: "metaverse" },
-      { term: "Dijital Sanat", slug: "dijital-sanat" },
-    ],
     seoTitle: "NFT (Değiştirilemez Token) Nedir? | Finansal Sözlük",
     metaDescription:
       "NFT kavramı, özellikleri ve kullanım alanları. Dijital sanat, koleksiyonlar ve oyunlarda NFT'lerin rolü ve yatırım potansiyeli.",
-    popularity: 84,
     pronunciation: "en-ef-ti",
   },
   {
@@ -239,16 +160,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Konut kredisi kullanarak ev satın alan kişiler, genellikle 5 ila 30 yıl arasında değişen vadelerde geri ödeme yaparlar.",
     category: "Bankacılık",
-    relatedTerms: [
-      { term: "Faiz", slug: "faiz" },
-      { term: "İpotek", slug: "ipotek" },
-      { term: "Kredi Notu", slug: "kredi-notu" },
-      { term: "Taksit", slug: "taksit" },
-    ],
     seoTitle: "Kredi Nedir? | Finansal Sözlük",
     metaDescription:
       "Kredi türleri, başvuru koşulları ve geri ödeme seçenekleri. İhtiyaç, konut, taşıt ve ticari krediler hakkında bilgi.",
-    popularity: 93,
     pronunciation: "kre-di",
   },
   {
@@ -259,16 +173,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Uzun vadeli yatırım stratejisi benimseyen Warren Buffett, değer yatırımı yaklaşımıyla dünyanın en başarılı yatırımcılarından biri olmuştur.",
     category: "Yatırım",
-    relatedTerms: [
-      { term: "Portföy", slug: "portfoy" },
-      { term: "Hisse Senedi", slug: "hisse-senedi" },
-      { term: "Tahvil", slug: "tahvil" },
-      { term: "Gayrimenkul", slug: "gayrimenkul" },
-    ],
     seoTitle: "Yatırım Nedir? | Finansal Sözlük",
     metaDescription:
       "Yatırım türleri, stratejileri ve risk-getiri ilişkisi. Başarılı yatırım için temel prensipler ve dikkat edilmesi gerekenler.",
-    popularity: 96,
     pronunciation: "ya-tı-rım",
   },
   {
@@ -279,16 +186,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Şirketin bilançosunda yer alan aktifler, dönen varlıklar ve duran varlıklar olarak iki ana kategoride sınıflandırılır.",
     category: "Muhasebe",
-    relatedTerms: [
-      { term: "Pasif", slug: "pasif" },
-      { term: "Bilanço", slug: "bilanco" },
-      { term: "Öz Sermaye", slug: "oz-sermaye" },
-      { term: "Likidite", slug: "likidite" },
-    ],
     seoTitle: "Aktif Nedir? | Finansal Sözlük",
     metaDescription:
       "Aktif kavramı, türleri ve muhasebedeki önemi. Dönen ve duran varlıklar, aktif hesapların analizi ve değerlemesi.",
-    popularity: 78,
     pronunciation: "ak-tif",
   },
   {
@@ -299,16 +199,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Akıllı bir yatırımcı, portföyünü hisse senetleri, tahviller, gayrimenkul ve emtialar arasında diversifiye ederek piyasa dalgalanmalarına karşı koruma sağlar.",
     category: "Yatırım",
-    relatedTerms: [
-      { term: "Portföy", slug: "portfoy" },
-      { term: "Risk Yönetimi", slug: "risk-yonetimi" },
-      { term: "Korelasyon", slug: "korelasyon" },
-      { term: "Varlık Dağılımı", slug: "varlik-dagilimi" },
-    ],
     seoTitle: "Diversifikasyon Nedir? | Finansal Sözlük",
     metaDescription:
       "Yatırım portföyünde diversifikasyon stratejileri, faydaları ve uygulama yöntemleri. Etkin çeşitlendirme için öneriler.",
-    popularity: 80,
     pronunciation: "di-ver-si-fi-kas-yon",
   },
   {
@@ -319,16 +212,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Türkiye'de Findeks tarafından hesaplanan kredi notu, 1-1900 arasında değişir ve yüksek puan daha iyi kredi koşulları sağlar.",
     category: "Bankacılık",
-    relatedTerms: [
-      { term: "Kredi", slug: "kredi" },
-      { term: "Kredi Sicili", slug: "kredi-sicili" },
-      { term: "Kredi Kayıt Bürosu", slug: "kredi-kayit-burosu" },
-      { term: "Temerrüt", slug: "temerrut" },
-    ],
     seoTitle: "Kredi Notu Nedir? | Finansal Sözlük",
     metaDescription:
       "Kredi notu hesaplama, önemi ve kredi notunu yükseltme yöntemleri. Kredi başvurularında kredi notunun etkisi ve dikkat edilmesi gerekenler.",
-    popularity: 89,
     pronunciation: "kre-di no-tu",
   },
   {
@@ -339,16 +225,9 @@ const financialTerms: FinancialTerm[] = [
     example:
       "Bir gayrimenkul yatırımcısı, 500.000 TL'ye aldığı ve yıllık 50.000 TL kira geliri elde ettiği bir dairenin ROI'sini %10 olarak hesaplar.",
     category: "Yatırım",
-    relatedTerms: [
-      { term: "Yatırım", slug: "yatirim" },
-      { term: "Kar Marjı", slug: "kar-marji" },
-      { term: "Geri Ödeme Süresi", slug: "geri-odeme-suresi" },
-      { term: "Net Bugünkü Değer", slug: "net-bugunku-deger" },
-    ],
     seoTitle: "ROI (Yatırım Getirisi) Nedir? | Finansal Sözlük",
     metaDescription:
       "ROI hesaplama yöntemleri, önemi ve yatırım kararlarındaki rolü. Farklı yatırım türlerinde ROI analizi ve karşılaştırma.",
-    popularity: 83,
     pronunciation: "ar-o-ay",
   },
 ]
@@ -384,7 +263,7 @@ export function searchTerms(query: string): FinancialTerm[] {
   )
 }
 
-// En popüler terimleri getir
+// Popüler terimleri getir (alfabetik sıralama ile)
 export function getPopularTerms(limit = 6): FinancialTerm[] {
-  return [...financialTerms].sort((a, b) => b.popularity - a.popularity).slice(0, limit)
+  return [...financialTerms].sort((a, b) => a.term.localeCompare(b.term, "tr")).slice(0, limit)
 }

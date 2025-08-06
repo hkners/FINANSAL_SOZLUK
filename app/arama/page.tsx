@@ -7,12 +7,12 @@ import { useSearchParams, useRouter } from "next/navigation"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ArrowLeft, Search, Filter, SortAsc } from "lucide-react"
+import { ArrowLeft, Search, Filter, SortAsc } from 'lucide-react'
 import Link from "next/link"
 import { searchTerms } from "@/lib/mock-data"
 import type { FinancialTerm } from "@/lib/mock-data"
 
-type SortOption = "relevance" | "alphabetical" | "popularity"
+type SortOption = "relevance" | "alphabetical"
 type FilterOption = "all" | "Bankacılık" | "Borsa" | "Kripto" | "Yatırım" | "Girişimcilik" | "Muhasebe" | "Ekonomi"
 
 function SearchContent() {
@@ -49,9 +49,6 @@ function SearchContent() {
         case "alphabetical":
           filtered.sort((a, b) => a.term.localeCompare(b.term, "tr"))
           break
-        case "popularity":
-          filtered.sort((a, b) => b.popularity - a.popularity)
-          break
         case "relevance":
         default:
           // Relevance scoring
@@ -83,9 +80,6 @@ function SearchContent() {
     else if (termLower.includes(queryLower)) score += 60
     // Definition contains query
     else if (definitionLower.includes(queryLower)) score += 40
-
-    // Add popularity bonus
-    score += term.popularity * 0.1
 
     return score
   }
@@ -197,7 +191,6 @@ function SearchContent() {
                     {[
                       { value: "relevance", label: "İlgililik" },
                       { value: "alphabetical", label: "Alfabetik" },
-                      { value: "popularity", label: "Popülerlik" },
                     ].map((option) => (
                       <Button
                         key={option.value}
@@ -268,14 +261,11 @@ function SearchContent() {
                       </Link>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-xs text-gray-500">Popülerlik: {term.popularity}%</div>
-                    <Link href={`/kategori/${term.category.toLowerCase().replace(/\s+/g, "-")}`}>
-                      <Badge variant="secondary" className="hover:bg-blue-100 cursor-pointer">
-                        {term.category}
-                      </Badge>
-                    </Link>
-                  </div>
+                  <Link href={`/kategori/${term.category.toLowerCase().replace(/\s+/g, "-")}`}>
+                    <Badge variant="secondary" className="hover:bg-blue-100 cursor-pointer">
+                      {term.category}
+                    </Badge>
+                  </Link>
                 </div>
                 <p className="text-gray-700 leading-relaxed ml-10 mb-4">
                   {highlightMatch(term.definition, searchParams.get("q") || "")}
