@@ -78,7 +78,7 @@ function getCategoryName(slug: string): string {
     borsa: "Borsa",
     kripto: "Kripto",
     yatirim: "Yatırım",
-    "kredi-kartlari": "Kredi Kartları",
+    ticaret: "Ticaret",
     girisimcilik: "Girişimcilik",
     muhasebe: "Muhasebe",
     ekonomi: "Ekonomi",

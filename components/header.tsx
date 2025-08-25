@@ -25,14 +25,8 @@ export function Header() {
             <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">
               Ana Sayfa
             </Link>
-            <Link href="/kategoriler" className="text-gray-700 hover:text-blue-600 transition-colors">
-              Kategoriler
-            </Link>
             <Link href="/hakkimizda" className="text-gray-700 hover:text-blue-600 transition-colors">
               Hakkımızda
-            </Link>
-            <Link href="/iletisim" className="text-gray-700 hover:text-blue-600 transition-colors">
-              İletişim
             </Link>
           </nav>
 
@@ -49,14 +43,8 @@ export function Header() {
               <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">
                 Ana Sayfa
               </Link>
-              <Link href="/kategoriler" className="text-gray-700 hover:text-blue-600 transition-colors">
-                Kategoriler
-              </Link>
               <Link href="/hakkimizda" className="text-gray-700 hover:text-blue-600 transition-colors">
                 Hakkımızda
-              </Link>
-              <Link href="/iletisim" className="text-gray-700 hover:text-blue-600 transition-colors">
-                İletişim
               </Link>
             </nav>
           </div>

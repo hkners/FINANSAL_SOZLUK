@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
-import { Building2, TrendingUp, Bitcoin, PiggyBank, CreditCard, Briefcase, Calculator, Globe } from "lucide-react"
+import { Building2, TrendingUp, Bitcoin, Wallet, Store, Briefcase, Calculator, Globe } from "lucide-react"
 import { getAllTerms } from "@/lib/mock-data"
 
 const categories = [
@@ -25,13 +25,13 @@ const categories = [
   {
     name: "Yatırım",
     slug: "yatirim",
-    icon: PiggyBank,
+    icon: Wallet,
     color: "from-purple-500 to-purple-600",
   },
   {
-    name: "Kredi Kartları",
-    slug: "kredi-kartlari",
-    icon: CreditCard,
+    name: "Ticaret",
+    slug: "ticaret",
+    icon: Store,
     color: "from-red-500 to-red-600",
   },
   {
