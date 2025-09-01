@@ -1,4 +1,3 @@
-import { createClient } from "@/lib/supabase/server"
 import { createClient as createBrowserClient } from "@/lib/supabase/client"
 
 export interface FinancialTerm {
@@ -12,11 +11,10 @@ export interface FinancialTerm {
   pronunciation?: string
 }
 
-// Server-side functions (for server components and API routes)
 export async function getAllTerms(): Promise<FinancialTerm[]> {
   console.log("[v0] getAllTerms: Starting fetch")
   try {
-    const supabase = await createClient()
+    const supabase = createBrowserClient()
     console.log("[v0] getAllTerms: Supabase client created")
 
     const { data, error } = await supabase.from("finansal_sozluk").select("*").order("term")
@@ -44,7 +42,7 @@ export async function getAllTerms(): Promise<FinancialTerm[]> {
 }
 
 export async function getTermBySlug(slug: string): Promise<FinancialTerm | null> {
-  const supabase = await createClient()
+  const supabase = createBrowserClient()
   const { data, error } = await supabase.from("finansal_sozluk").select("*").eq("slug", slug).single()
 
   if (error) {
@@ -56,7 +54,7 @@ export async function getTermBySlug(slug: string): Promise<FinancialTerm | null>
 }
 
 export async function getTermsByCategory(category: string): Promise<FinancialTerm[]> {
-  const supabase = await createClient()
+  const supabase = createBrowserClient()
   const { data, error } = await supabase.from("finansal_sozluk").select("*").ilike("category", category).order("term")
 
   if (error) {
@@ -68,7 +66,7 @@ export async function getTermsByCategory(category: string): Promise<FinancialTer
 }
 
 export async function getTermsByLetter(letter: string): Promise<FinancialTerm[]> {
-  const supabase = await createClient()
+  const supabase = createBrowserClient()
   const { data, error } = await supabase.from("finansal_sozluk").select("*").ilike("term", `${letter}%`).order("term")
 
   if (error) {
@@ -80,7 +78,7 @@ export async function getTermsByLetter(letter: string): Promise<FinancialTerm[]>
 }
 
 export async function searchTerms(query: string): Promise<FinancialTerm[]> {
-  const supabase = await createClient()
+  const supabase = createBrowserClient()
   const { data, error } = await supabase
     .from("finansal_sozluk")
     .select("*")
@@ -98,7 +96,7 @@ export async function searchTerms(query: string): Promise<FinancialTerm[]> {
 export async function getPopularTerms(limit = 6): Promise<FinancialTerm[]> {
   console.log("[v0] getPopularTerms: Starting fetch with limit:", limit)
   try {
-    const supabase = await createClient()
+    const supabase = createBrowserClient()
     console.log("[v0] getPopularTerms: Supabase client created")
 
     const { data, error } = await supabase.from("finansal_sozluk").select("*").order("term").limit(limit)
