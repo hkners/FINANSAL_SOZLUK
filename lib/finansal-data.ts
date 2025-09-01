@@ -54,15 +54,31 @@ export async function getTermBySlug(slug: string): Promise<FinancialTerm | null>
 }
 
 export async function getTermsByCategory(category: string): Promise<FinancialTerm[]> {
-  const supabase = createBrowserClient()
-  const { data, error } = await supabase.from("finansal_sozluk").select("*").ilike("category", category).order("term")
+  console.log("[v0] getTermsByCategory: Starting fetch for category:", category)
+  try {
+    const supabase = createBrowserClient()
+    console.log("[v0] getTermsByCategory: Supabase client created")
 
-  if (error) {
-    console.error("Error fetching terms by category:", error)
+    const { data, error } = await supabase.from("finansal_sozluk").select("*").eq("category", category).order("term")
+
+    if (error) {
+      console.error("[v0] getTermsByCategory: Supabase error:", error)
+      console.error("[v0] getTermsByCategory: Error details:", JSON.stringify(error, null, 2))
+      return []
+    }
+
+    console.log("[v0] getTermsByCategory: Raw data:", data)
+    console.log("[v0] getTermsByCategory: Fetched", data?.length || 0, "terms for category:", category)
+
+    if (data && data.length > 0) {
+      console.log("[v0] getTermsByCategory: First term:", JSON.stringify(data[0], null, 2))
+    }
+
+    return data || []
+  } catch (err) {
+    console.error("[v0] getTermsByCategory: Unexpected error:", err)
     return []
   }
-
-  return data || []
 }
 
 export async function getTermsByLetter(letter: string): Promise<FinancialTerm[]> {
@@ -79,11 +95,7 @@ export async function getTermsByLetter(letter: string): Promise<FinancialTerm[]>
 
 export async function searchTerms(query: string): Promise<FinancialTerm[]> {
   const supabase = createBrowserClient()
-  const { data, error } = await supabase
-    .from("finansal_sozluk")
-    .select("*")
-    .or(`term.ilike.%${query}%,definition.ilike.%${query}%,category.ilike.%${query}%`)
-    .order("term")
+  const { data, error } = await supabase.from("finansal_sozluk").select("*").ilike("term", `%${query}%`).order("term")
 
   if (error) {
     console.error("Error searching terms:", error)
@@ -127,11 +139,7 @@ export async function getPopularTerms(limit = 6): Promise<FinancialTerm[]> {
 export async function searchTermsClient(query: string): Promise<FinancialTerm[]> {
   console.log("[v0] searchTermsClient: Searching for:", query)
   const supabase = createBrowserClient()
-  const { data, error } = await supabase
-    .from("finansal_sozluk")
-    .select("*")
-    .or(`term.ilike.%${query}%,definition.ilike.%${query}%,category.ilike.%${query}%`)
-    .order("term")
+  const { data, error } = await supabase.from("finansal_sozluk").select("*").ilike("term", `%${query}%`).order("term")
 
   if (error) {
     console.error("[v0] Error searching terms:", error)

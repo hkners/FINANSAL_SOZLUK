@@ -13,8 +13,8 @@ interface PageProps {
 
 export default async function KategoriPage({ params }: PageProps) {
   const { kategori } = params
+  const terms = await getTermsByCategory(kategori)
   const categoryName = getCategoryName(kategori)
-  const terms = await getTermsByCategory(categoryName)
 
   return (
     <div className="min-h-screen bg-white">
