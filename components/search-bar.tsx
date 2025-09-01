@@ -1,14 +1,13 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Search, X } from "lucide-react"
-import { searchTerms } from "@/lib/mock-data"
-import type { FinancialTerm } from "@/lib/mock-data"
+import { searchTermsClient } from "@/lib/finansal-data"
+import type { FinancialTerm } from "@/lib/finansal-data"
 
 export function SearchBar() {
   const [query, setQuery] = useState("")
@@ -38,10 +37,12 @@ export function SearchBar() {
   }, [])
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer = setTimeout(async () => {
       if (query.trim().length > 1) {
-        const results = searchTerms(query).slice(0, 8)
-        setSuggestions(results)
+        console.log("[v0] SearchBar: Searching for:", query)
+        const results = await searchTermsClient(query)
+        console.log("[v0] SearchBar: Search results count:", results.length)
+        setSuggestions(results.slice(0, 8))
         setShowSuggestions(true)
         setSelectedIndex(-1)
       } else {

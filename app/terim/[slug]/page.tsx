@@ -1,9 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Share2, Bookmark } from 'lucide-react'
+import { ArrowLeft, Share2, Bookmark } from "lucide-react"
 import Link from "next/link"
-import { getTermBySlug } from "@/lib/mock-data"
+import { getTermBySlug } from "@/lib/finansal-data"
 import { notFound } from "next/navigation"
 
 interface PageProps {
@@ -12,8 +12,8 @@ interface PageProps {
   }
 }
 
-export default function TermDetailPage({ params }: PageProps) {
-  const termData = getTermBySlug(params.slug)
+export default async function TermDetailPage({ params }: PageProps) {
+  const termData = await getTermBySlug(params.slug)
 
   if (!termData) {
     notFound()
@@ -70,7 +70,7 @@ export default function TermDetailPage({ params }: PageProps) {
               <div className="pt-6 border-t border-gray-200">
                 <p className="text-sm text-gray-600 mb-2">Bu terim şu kategoride yer alıyor:</p>
                 <Link href={`/kategori/${termData.category.toLowerCase().replace(/\s+/g, "-")}`}>
-                  <Button variant="outline" className="text-blue-600 border-blue-200 hover:bg-blue-50">
+                  <Button variant="outline" className="text-blue-600 border-blue-200 hover:bg-blue-50 bg-transparent">
                     {termData.category} kategorisindeki diğer terimler →
                   </Button>
                 </Link>
@@ -84,7 +84,7 @@ export default function TermDetailPage({ params }: PageProps) {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const termData = getTermBySlug(params.slug)
+  const termData = await getTermBySlug(params.slug)
 
   if (!termData) {
     return {

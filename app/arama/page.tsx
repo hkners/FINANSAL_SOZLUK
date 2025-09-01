@@ -7,10 +7,10 @@ import { useSearchParams, useRouter } from "next/navigation"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ArrowLeft, Search, Filter, SortAsc } from 'lucide-react'
+import { ArrowLeft, Search, Filter, SortAsc } from "lucide-react"
 import Link from "next/link"
-import { searchTerms } from "@/lib/mock-data"
-import type { FinancialTerm } from "@/lib/mock-data"
+import { searchTermsClient } from "@/lib/finansal-data"
+import type { FinancialTerm } from "@/lib/finansal-data"
 
 type SortOption = "relevance" | "alphabetical"
 type FilterOption = "all" | "Bankacılık" | "Borsa" | "Kripto" | "Yatırım" | "Girişimcilik" | "Muhasebe" | "Ekonomi"
@@ -33,11 +33,11 @@ function SearchContent() {
     }
   }, [searchParams])
 
-  const performSearch = (query: string) => {
+  const performSearch = async (query: string) => {
     setIsLoading(true)
 
-    setTimeout(() => {
-      let filtered = searchTerms(query)
+    try {
+      let filtered = await searchTermsClient(query)
 
       // Kategori filtresi uygula
       if (filterBy !== "all") {
@@ -61,8 +61,12 @@ function SearchContent() {
       }
 
       setResults(filtered)
+    } catch (error) {
+      console.error("Search error:", error)
+      setResults([])
+    } finally {
       setIsLoading(false)
-    }, 300)
+    }
   }
 
   const getRelevanceScore = (term: FinancialTerm, query: string) => {

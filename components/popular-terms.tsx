@@ -1,10 +1,21 @@
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { getPopularTerms } from "@/lib/mock-data"
+import { getPopularTerms } from "@/lib/finansal-data"
 
-export function PopularTerms() {
-  const popularTerms = getPopularTerms(6)
+export async function PopularTerms() {
+  console.log("[v0] PopularTerms: Starting to fetch popular terms")
+  const popularTerms = await getPopularTerms(6)
+  console.log("[v0] PopularTerms: Fetched terms count:", popularTerms.length)
+  console.log("[v0] PopularTerms: First term:", popularTerms[0])
+
+  if (popularTerms.length === 0) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-gray-600">Henüz terim bulunamadı. Veritabanına veri eklendiğinden emin olun.</p>
+      </div>
+    )
+  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

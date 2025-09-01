@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
-import { getTermsByCategory } from "@/lib/mock-data"
+import { getTermsByCategory } from "@/lib/finansal-data"
 
 interface PageProps {
   params: {
@@ -11,10 +11,10 @@ interface PageProps {
   }
 }
 
-export default function KategoriPage({ params }: PageProps) {
+export default async function KategoriPage({ params }: PageProps) {
   const { kategori } = params
   const categoryName = getCategoryName(kategori)
-  const terms = getTermsByCategory(categoryName)
+  const terms = await getTermsByCategory(categoryName)
 
   return (
     <div className="min-h-screen bg-white">

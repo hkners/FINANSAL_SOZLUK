@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, BookOpen } from "lucide-react"
 import Link from "next/link"
 import { AlphabetFilter } from "@/components/alphabet-filter"
-import { getTermsByLetter } from "@/lib/mock-data"
+import { getTermsByLetter } from "@/lib/finansal-data"
 
 // Türk alfabesi
 const alphabet = [
@@ -43,10 +43,10 @@ interface PageProps {
   }
 }
 
-export default function HarfPage({ params }: PageProps) {
+export default async function HarfPage({ params }: PageProps) {
   const letterIndex = Number.parseInt(params.id) - 1
   const letter = alphabet[letterIndex] || "A"
-  const terms = getTermsByLetter(letter).sort((a, b) => a.term.localeCompare(b.term, "tr"))
+  const terms = (await getTermsByLetter(letter)).sort((a, b) => a.term.localeCompare(b.term, "tr"))
 
   return (
     <div className="min-h-screen bg-white">

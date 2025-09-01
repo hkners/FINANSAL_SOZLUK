@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Building2, TrendingUp, Bitcoin, Wallet, Store, Briefcase, Calculator, Globe } from "lucide-react"
-import { getAllTerms } from "@/lib/mock-data"
+import { getAllTerms } from "@/lib/finansal-data"
 
 const categories = [
   {
@@ -54,8 +54,14 @@ const categories = [
   },
 ]
 
-export function CategoryGrid() {
-  const allTerms = getAllTerms()
+export async function CategoryGrid() {
+  const allTerms = await getAllTerms()
+
+  console.log("[v0] CategoryGrid: Fetched terms count:", allTerms.length)
+  console.log(
+    "[v0] CategoryGrid: Sample categories from data:",
+    allTerms.slice(0, 3).map((t) => t.category),
+  )
 
   // Her kategori için terim sayısını hesapla
   const categoryCounts: Record<string, number> = {}
@@ -66,11 +72,13 @@ export function CategoryGrid() {
     categoryCounts[term.category]++
   })
 
+  console.log("[v0] CategoryGrid: Category counts:", categoryCounts)
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {categories.map((category) => {
         const IconComponent = category.icon
-        const count = categoryCounts[category.name] || 0
+        const count = categoryCounts[category.slug] || 0
 
         return (
           <Link key={category.slug} href={`/kategori/${category.slug}`}>
