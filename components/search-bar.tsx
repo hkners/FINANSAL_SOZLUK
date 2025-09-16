@@ -39,9 +39,9 @@ export function SearchBar() {
   useEffect(() => {
     const timer = setTimeout(async () => {
       if (query.trim().length > 1) {
-        console.log("[v0] SearchBar: Searching for:", query)
+        console.log("SearchBar: Searching for:", query)
         const results = await searchTermsClient(query)
-        console.log("[v0] SearchBar: Search results count:", results.length)
+        console.log("SearchBar: Search results count:", results.length)
         setSuggestions(results.slice(0, 8))
         setShowSuggestions(true)
         setSelectedIndex(-1)

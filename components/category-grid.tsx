@@ -57,9 +57,9 @@ const categories = [
 export async function CategoryGrid() {
   const allTerms = await getAllTerms()
 
-  console.log("[v0] CategoryGrid: Fetched terms count:", allTerms.length)
+  console.log("CategoryGrid: Fetched terms count:", allTerms.length)
   console.log(
-    "[v0] CategoryGrid: Sample categories from data:",
+    "CategoryGrid: Sample categories from data:",
     allTerms.slice(0, 3).map((t) => t.category),
   )
 
@@ -72,7 +72,7 @@ export async function CategoryGrid() {
     categoryCounts[term.category]++
   })
 
-  console.log("[v0] CategoryGrid: Category counts:", categoryCounts)
+  console.log("CategoryGrid: Category counts:", categoryCounts)
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

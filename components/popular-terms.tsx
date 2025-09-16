@@ -4,10 +4,10 @@ import { Badge } from "@/components/ui/badge"
 import { getPopularTerms } from "@/lib/finansal-data"
 
 export async function PopularTerms() {
-  console.log("[v0] PopularTerms: Starting to fetch popular terms")
+  console.log("PopularTerms: Starting to fetch popular terms")
   const popularTerms = await getPopularTerms(6)
-  console.log("[v0] PopularTerms: Fetched terms count:", popularTerms.length)
-  console.log("[v0] PopularTerms: First term:", popularTerms[0])
+  console.log("PopularTerms: Fetched terms count:", popularTerms.length)
+  console.log("PopularTerms: First term:", popularTerms[0])
 
   if (popularTerms.length === 0) {
     return (
